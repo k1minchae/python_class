@@ -33,4 +33,8 @@ information[authors[2]] = books[4]
 information[authors[3]] = books[0]
 information[authors[4]] = books[2]
 
-print(f"김시습 : {information['김시습']}\n허균 : {information['허균']}\n남영로 : {information['남영로']}\n작자 미상 : {information['작자 미상']}\n임제 : {information['임제']}")
+# print(f"김시습 : {information['김시습']}\n허균 : {information['허균']}\n남영로 : {information['남영로']}\n작자 미상 : {information['작자 미상']}\n임제 : {information['임제']}")
+
+# 간단하게 출력하는 법
+for i in information:
+    print(i)

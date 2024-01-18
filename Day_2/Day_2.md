@@ -210,7 +210,7 @@ my_set_2 = {3, 4, 5}
 print(my_set_1 | my_set_2)   # {1, 2, 3, 6, 9}
 
 # 차집합 -
-print(my_set_1 - my_set_2) # {1, 2, 4, 5}
+print(my_set_1 - my_set_2) # {1, 2}
 
 # 교집합 &
 print(my_set_1 & my_set_2) # {3}
