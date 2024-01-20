@@ -12,9 +12,9 @@
 ---
 
 ## Git & Vscode 사용법
-[GIT](git.md)
+[GIT](./Day_0/git.md)
 
-[VScode](vscode.md)
+[VScode](./Day_0/vscode.md)
 
 ---
 ## 파이썬 기초

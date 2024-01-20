@@ -15,3 +15,5 @@
 - 전체 블록 지정: Ctrl + A
 - ctrl + / : 주석 한번에 지정
 - shift + insert : 터미널에 붙여넣기
+
+***★단축키가 안먹힐 때 : ctrl shift 눌러서 Microsoft 입력기로 전환***
