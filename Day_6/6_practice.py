@@ -224,15 +224,16 @@ print(my_dict)
 
 #해시 테이블
 
-my_dict = {'a', 'b', 'c', 1, 2, 3}
-element = my_dict.pop()
-print(element)  # 정수는 1만 반환됨
-print(my_dict)  # 문자열의 경우 임의의 문자열 반환
+# my_dict = {'a', 'b', 'c', 1, 2, 3}
+# element = my_dict.pop()
+# print(element)  # 정수는 1만 반환됨
+# print(my_dict)  # 문자열의 경우 임의의 문자열 반환
 
 # 정수는 고정된 해시코드를 가지고, 문자열의 해시코드는 일정하지 않다.
 # hase() 함수 사용해보기
 
-print(hash(1))
-print(hash(2))
-print(hash('a'))
-print(hash('b'))
+# print(hash(1))
+# print(hash(2))
+# print(hash('a'))
+# print(hash('b'))
+
