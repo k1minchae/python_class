@@ -1,29 +1,3 @@
-# import sys
-
-# word = (str(sys.stdin.readline().strip('\n'))).upper()
-# count_word_list = []
-
-# for i in list(word):
-#     count_word_list.append(word.count(i))
-
-# # 가장 많이 나온 첫 번째 단어
-# best_word = word[count_word_list.index(max(count_word_list))]
-
-# # 가장 많이 나온 횟수
-# num_max = max(count_word_list)
-
-# # 가장 많이 나온 횟수의 인덱스값 : count_word_list.index(num_max)
-# result = []
-# for j in list(word):
-#     if list(word).count(j) == num_max:  
-#         if j != list(word)[count_word_list.index(num_max)]:
-#             print('?')
-#             result.append(1)
-#             break
-
-# if result == []:
-#     print(best_word)
-
 import sys
 
 word = (str(sys.stdin.readline().strip('\n'))).upper()
