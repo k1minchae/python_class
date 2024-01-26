@@ -38,4 +38,4 @@
 
 [1일차 : 금융상품 데이터 처리](./관통프로젝트/PJ_01/금융상품/skeleton/python_files/)
 
-[2일차 : 데이터 시각화](./관통프로젝트/PJT02/내가한것/archive/project.ipynb)
+[2일차 : 데이터 시각화](./관통프로젝트/PJ_02/내가한것/archive/project.ipynb)
