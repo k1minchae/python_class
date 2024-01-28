@@ -37,8 +37,7 @@ print(f'{c_min} {c_max}')
 
 '''
 	
-정호성[서울_4반]
-오후 5:10
+정답코드
 
 import sys
 n, m = map(int, sys.stdin.readline().split())

@@ -300,3 +300,16 @@ for i, j in pair:
 
 # 2번: dictionary unpacking : **사용
 
+'''
+재귀함수 연습하기
+'''
+# 피보나치 수열
+n = int(input())
+count = 0
+def fib(n):
+    fib(n-1) + fib(n-2)
+    if n ==3:
+        
+    print()
+
+ 

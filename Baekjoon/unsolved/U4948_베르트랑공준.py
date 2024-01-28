@@ -17,12 +17,8 @@ for i in range(N, 2 * N + 1):   # n 부터 2n까지 순회해서 소수 찾기
 print(len(dec))
 '''
 
-# A = [[0 for _ in range(row)] for _ in range(col)] 
-# for i in A:
-#     i = list(map(int, input().split()))
-#     for j in range(row):
-#         A[j] = i
 
+# 풀다 맘...
 import sys
 A = []
 B = []
