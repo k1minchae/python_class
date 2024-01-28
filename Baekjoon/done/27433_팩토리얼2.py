@@ -7,6 +7,6 @@ def fac(x):
     elif x == 1:
         return x
     return x * fac(x-1)    
-
 result =fac(N)
 print(result)
+
