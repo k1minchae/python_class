@@ -31,6 +31,26 @@ def get_final_position(N, matrix, move_list):
                 return None
     return [x, y]
 
+''' 강사님 풀이
+d_row = [-1, 1, 0, 0]
+d_col = [0, 0, -1, 1]
+row = 0
+col = 0
+for i in range(N):
+    for j in range(N):
+        if matrix[i][j] ==1:
+            row = i
+            col = j
+            break
+            
+for move in move_list:
+    row += d_row[move]
+    col += d_col[move]
+    if row <= 0 or row >= N or col <0 or col >= N
+        return None
+    else:
+        return [row, col]
+'''
 
 # 추가 테스트를 위한 코드 작성 가능
 # 예) print(함수명(인자))

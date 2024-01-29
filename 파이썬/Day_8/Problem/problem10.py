@@ -28,6 +28,14 @@ def is_position_safe(N, M, current):
         else:
             return False
 
+'''강사님 풀이
+dir = [(-1, 0), (1, 0), (0, -1), (0,1)] # 방향설정
+row, col = current
+if (0 <= row + dir[0][M] < n) and (0<= col + dir[1][M] < N):
+    return True
+else:
+    return False
+'''
 
 
 # 추가 테스트를 위한 코드 작성 가능

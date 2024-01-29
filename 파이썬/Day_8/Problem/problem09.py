@@ -10,8 +10,8 @@ def dec_to_bin(n):
         a = str(n % 2)
         n = n // 2
         b = str(dec_to_bin(n))
-        result = b, a
-    return ''.join(result)
+        result = b + a
+    return result
 
 
 # 추가 테스트를 위한 코드 작성 가능
