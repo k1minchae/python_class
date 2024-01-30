@@ -11,10 +11,10 @@ for i in range(-K, K+1):
     if i == 0:
         continue
     dx.append(i)
-    dy.append(i) # 여기까지하면 4사분면, 1사분면만 됨
+    dy.append(i) # 여기까지하면 3사분면, 1사분면만 됨
 
 dy.extend(dy)
-dx.extend((reversed(dx))) # 공격범위에 2사분면과 3사분면도 추가
+dx.extend((reversed(dx))) # 공격범위에 2사분면과 4사분면도 추가
 
 kill_list = [] # 죽인 몬스터의 모든 경우의수 저장
 for i in range(N):

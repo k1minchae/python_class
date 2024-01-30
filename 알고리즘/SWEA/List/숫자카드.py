@@ -7,16 +7,17 @@ for tc in range(1, T+1):
     arr = [0] * (max_v + 1)
     cnt = [0] * (max_v + 1)
 
-    count = 0
     for i in a:
         cnt[i] += 1
 
-    max_c = max(cnt) # 가장 많이 카운트 된 카운트 값
-    count = 0
-    for i in range(N-1, 0, -1):
+    max_c = max(cnt) # 가장 많은 카드의 장 수
+
+    number = 0
+    for i in range(max_v, -1, -1):
         if cnt[i] == max_c:
-            count = i
+            number = i
+            break
 
 
-    print(f'#{tc} {count} {max_c}')
+    print(f'#{tc} {number} {max_c}')
 
