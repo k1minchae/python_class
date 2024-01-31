@@ -1,37 +1,21 @@
 N, M = map(int, input().split())  # 세로, 가로
 K = int(input())  # 화력
+arr = [list(map(input())) for _ in range(N)]
 
+dx = [0, 0, -1, 1] # 상 하 좌 우
+dy = [1, -1, 0, 0]
 
-def bomb(N, M, K, arr):
-
-
-        arr = [list(input()) for _ in range(N)]  # 주어진 맵
-        # 위에는 입력받는 코드
-
-
-        bomb_list = []  # 폭탄의 위치를 튜플로 저장 (세로,가로)
-        for i in range(N):
-            for j in range(M):
-                if arr[i][j] == '@':
-                    bomb_list.append([i, j])
-
-
-        # 폭탄이 터지는 방향
-        xbomb = [0, 0, -1, 1, 0]  # 상 하 좌 우 중앙
-        ybomb = [1, -1, 0, 0, 0]
-
-        # 터뜨리기
-        for i in range(5):
-            for j in range(1, K + 1):
-                for y, x in bomb_list:
-                    ny = y + ybomb[i] * j
-                    nx = x + xbomb[i] * j
-                    if nx >= 0 and nx < M and ny >= 0 and ny < N:
-                        if arr[ny][nx] == '#':
+for i in range(N):
+    for j in range(M):
+        if arr[i][y] == '@': # 순회중에 폭탄을 만나면
+            arr[i][y] = '%' # 일단 폭탄 자리는 터뜨림
+            for d in range(4):  # x, y의 델타값을 위한 순회
+                for k in range(1, 1+K):
+                    ny = i + dy[d] * k # 폭탄 터지는 범위
+                    nx = j + dx[d] * k
+                    if 0 <= ny < N and 0 <= nx < M: # 인덱스 값을 벗어나지 않게 하는 조건
+                        if arr[ny][nx] == '#': # 벽을 만나면
                             break
-                        arr[ny][nx] = '%'
-        return arr
-
-result = bomb(N, M, K)
-print(result)
-
+                        if arr[ny][nx] == '_': # 빈 칸을 만나면
+                            arr[ny][nx] = '%'
+print(arr)

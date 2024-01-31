@@ -4,9 +4,9 @@ for tc in range(1, T+1):
     arr = [list(map(int, input().split())) for _ in range(N)]
 
     result = []
-    for start_i in range(N):
+    for start_i in range(N): # start_i : 사각형의 왼쪽 위 좌표 (i:행, j:열)
         for start_j in range(N):
-            for end_i in range(N):
+            for end_i in range(N): # 사각형의 오른쪽 아래 좌표
                 for end_j in range(N):
                     if arr[end_i][end_j] == arr[start_i][start_j]: # 2번 조건 충족
                         if end_i >= start_i and end_j >= start_j: # 1번 조건 충족
