@@ -149,5 +149,6 @@ K = int(input())
 arr = [list(input()) for _ in range(N)]
 
 bomb(N, M, K, arr)
-for row in arr:
-    print(*row, sep = '') # 공백 없이 출력하라는 뜻
+print(arr)
+# for row in arr:
+#     print(*row, sep = '') # 공백 없이 출력하라는 뜻
