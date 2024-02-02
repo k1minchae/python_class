@@ -34,31 +34,31 @@ import sys
 sys.stdin = open("./input.txt", "r") # 이렇게하면 안에있는 인풋파일로 불러올수있음
 '''
 
-# 특별한 정렬 (max와 min활용)
-# T = int(input())
-# for tc in range(1, T+1):
-#     N = int(input())
-#     nums = list(map(int, input().split()))
-#     result = []
-#
-#     while len(nums) > 0:
-#         max_v = max(nums)
-#         ''' max_v 못쓰면?
-#         max_v = float('-inf') # 음의 무한대
-#         for i inr range(len(nums)):
-#             if nums[i] > max_v:
-#                 max_v = nums[i]
-#         '''
-#         nums.remove(max_v)
-#         result.append(max_v)
-#
-#         min_v = min(nums)
-#         nums.remove(min_v)
-#         result.append(min_v)
-#     print(f'#{tc}', *result[:10])
+특별한 정렬 (max와 min활용)
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    nums = list(map(int, input().split()))
+    result = []
+
+    while len(nums) > 0:
+        max_v = max(nums)
+        ''' max_v 못쓰면?
+        max_v = float('-inf') # 음의 무한대
+        for i inr range(len(nums)):
+            if nums[i] > max_v:
+                max_v = nums[i]
+        '''
+        nums.remove(max_v)
+        result.append(max_v)
+
+        min_v = min(nums)
+        nums.remove(min_v)
+        result.append(min_v)
+    print(f'#{tc}', *result[:10])
 
 # 특별한 정렬 정렬로 푸는법
-'''
+
 T = int(input())
 for tc in range(1, T+1):
     N = int(input())
@@ -78,7 +78,7 @@ for tc in range(1, T+1):
         result.append(lst_f[i])
 
     print(f'#{tc}', *result)
-'''
+
 # 츄러스
 
 N, K = map(int,input().split())
