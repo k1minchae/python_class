@@ -86,3 +86,84 @@
 # print(stack[-1])
 
 
+# 그래프 경로 - DFS
+
+# def dfs(start, end):
+#     stack = []
+#     visited = [False] * (V+1)
+#     stack.append(start)
+#
+#     while stack: # 스택이 비어있으면 반복문 종료
+#         now = stack.pop()
+#         visited[now] = True  # 현재 노드 방문
+#         for next in range(1, V+1):
+#             # 방문하지 않았고, 연결되어 있다면
+#             if node[now][next] and not visited[next]:
+#                 stack.append(next)
+#
+#     if visited[end]:  # 끝점에 방문했다면
+#         return 1
+#     else:
+#         return 0
+#
+# T = int(input())
+# for tc in range(1, T+1):
+#     V, E = map(int, input().split())  # V: 노드, E : 간선의 개수
+#     node = [[0 for _ in range(V+1)] for _ in range(V+1)]
+#     for _ in range(E):
+#         start, end = map(int, input().split())
+#         node[start][end] = 1 # 해당 인접 행렬에 1 할당
+#     S, G = map(int, input().split()) # 출발, 도착 노드
+#     result = dfs(S, G)
+#     print(f'#{tc} {result}')
+
+
+# 10을 만들자
+
+# cnt = 0
+#
+# def func(n, level = 0, sum_v = 0):
+#     global cnt
+#
+#     if sum_v > 10:
+#         return # 더이상 진행 X
+#     if level == n:  # 모든 레벨을 탐색했을 때
+#         if sum_v == 10:
+#             cnt += 1
+#         return
+#     for i in range(1, 10):
+#         func(level + 1, sum_v + i, n)
+#
+# n = int(input())
+# func(n)
+# print(cnt)
+
+# 레드마운틴
+
+n = int(input())
+arr = [list(map(int, input().split())) for _ in range(n)]
+
+direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+used = [[0 for _ in range(n)] for _ in range(n)]
+
+def red(dy=0, dx=0):
+    if dy == n-1 and dx == n-1: # 목적지에 도달
+        return 1
+    for dir in direction:
+        ny, nx = dy + dir[0], dx + dir[1]
+        if ny < 0 or nx < 0 or ny >= n or nx >= n: # 맵의 범위를 벗어나면
+            continue
+        if arr[ny][nx] == 1: # 장애물 있을 때
+            continue
+        if used[ny][nx] == 1:  # 이미 방문한 칸일 때
+            continue
+        used[ny][nx] = 1 # 현재 칸 방문
+
+        result = red(ny, nx)
+        if result == 1:
+            return 1
+        used[ny][nx] = 0  # 가지치기 -> 경로가 해결책이 아니면 방문표시 되돌리기
+    return 0
+
+used[0][0] == 1  # 시작점 방문
+print(red())
