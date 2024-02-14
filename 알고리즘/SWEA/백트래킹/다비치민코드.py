@@ -14,35 +14,31 @@
 #         result = i
 # result = sorted(result)
 # print(*result)
-def cards(M, level=0, sum_v=1, sequence=[], used=set()):
-    global min_v
+def backtracking(cnt, cal, last_index):
+    global min_cal, min_result
+    if cnt == M:
+        if cal < min_cal:
+            min_cal = cal
+            min_result = result.copy()  # 최소값 업데이트
+        return
 
-    if level == M:
-        if sum_v < min_v:
-            min_v = sum_v
-            return sequence
-        else:
-            return None
+    for i in range(last_index, N):
+        if not visited[i]:
+            visited[i] = True
+            result.append(arr[i])
 
-    min_sequence = None
-    for num in arr:
-        if num not in used:
-            new_sum_v = sum_v * num
-            new_sequence = sequence + [num]
-            new_level = level + 1
-            new_used = used.copy()
-            new_used.add(num)
+            backtracking(cnt + 1, cal * arr[i], i + 1)
 
-            result = cards(M, new_level, new_sum_v, new_sequence, new_used)
-            if result is not None:
-                min_sequence = result
-
-    return min_sequence
+            visited[i] = False
+            result.pop()
 
 
 N, M = map(int, input().split())
-arr = list(map(int, input().split()))
+arr = sorted(list(map(int, input().split())))
+visited = [False] * N
+result = []
+min_cal = float('inf')
+min_result = []
+backtracking(0, 1, 0)
 
-min_v = float('inf')
-result = cards(M)
-print(*result)
+print(*min_result)

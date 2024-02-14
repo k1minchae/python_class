@@ -11,14 +11,17 @@
 #         cnt += 1
 #
 # print(cnt)
-N = int(input())
-numbers = [i for i in range(1, 10)]
-result = 0
-def make_ten(s, sum= 0, cnt = 0):
-    global result
-    cnt += 1
-    sum += s
-    if cnt == N and sum == 10:
-        result += 1
+cnt = 0
+def backtracking(level,sum_v):
+    global cnt
+    if level == N:
+        if sum_v == 10:
+            cnt += 1
+        return
 
-for i in range(1, 10):
+    for i in range(1, 10):
+        backtracking(level + 1, sum_v + i)
+
+N = int(input())
+backtracking(0, 0)
+print(cnt)
