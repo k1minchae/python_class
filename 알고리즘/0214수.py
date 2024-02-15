@@ -25,30 +25,30 @@
 # f(0, N, 10)
 
 
-# 토너먼트 카드게임
-#
-# def TNT(start, end):
-#     if start == end:
-#         return start # 부전승
-#     a = TNT(start, (start+end) // 2)    # 짝수번째
-#     b = TNT((start + end) //2 + 1, end)
-#     return RSP(a, b)
-#
-# def RSP(x, y):
-#     if cards[x] ==cards[y]: # 비긴경우
-#         return x
-#     # x승리
-#     elif cards[x] - cards[y] == 1 or cards[x] - cards[y] == -2:
-#         return x
-#     else:
-#         return y
-#
-# T = int(input())
-# for tc in range(1, T+1):
-#     N = int(input())
-#     cards = list(map(int, input().split()))
-#     result = TNT(0, N-1) + 1
-#     print(f'#{tc} {result}')
+토너먼트 카드게임
+
+def TNT(start, end):
+    if start == end:
+        return start # 부전승
+    a = TNT(start, (start+end) // 2)    # 첫번째 그룹
+    b = TNT((start + end) //2 + 1, end) # 두번째 그룹
+    return RSP(a, b)
+
+def RSP(x, y):
+    if cards[x] ==cards[y]: # 비긴경우
+        return x
+    # x승리
+    elif cards[x] - cards[y] == 1 or cards[x] - cards[y] == -2:
+        return x
+    else:
+        return y
+
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    cards = list(map(int, input().split()))
+    result = TNT(0, N-1) + 1
+    print(f'#{tc} {result}')
 
 
 
