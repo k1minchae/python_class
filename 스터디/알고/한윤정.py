@@ -7,21 +7,11 @@ for _ in range(M):
     arr[a-1][b-1] = 1
     arr[b-1][a-1] = 1
 
-result = []
-stack = []
-def icecream(i, j):
-    if i == N and j == N:
-        return
-    if len(stack) == 2:
-        result.append(stack[:])
-        return
-    if j == N:
-        icecream(i+1, 0)
-        return
+cnt  = 0
+for i in range(N):
+    for j in range(i+1, N):
+        for k in range(j+1, N):
+            if not arr[i][j] and not arr[j][k] and not arr[i][k]:
+                cnt += 1
 
-    if arr[i][j] and j == i:   # 불가능 조합
-        return
-    stack.append(j+1)
-    icecream(i, j+1)
-    stack.pop()
-
+print(cnt)
