@@ -5,6 +5,7 @@ for tc in range(1, T + 1):
     student_arr = [list(map(int, input().split())) for _ in range(N)]  # 학생 답안지
     score_list = [[0 for _ in range(M)] for _ in range(N)]
 
+    # 보너스, 점수 변수만들어서 하기
     for n in range(N):
         for m in range(M):
             if student_arr[n][m] == correct_arr[m]:  # 정답을 맞추고

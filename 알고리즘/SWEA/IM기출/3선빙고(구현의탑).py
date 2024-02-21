@@ -1,42 +1,5 @@
 # # 3선 빙고 (구현의 탑)
-#
-# MAP = [list(map(int, input().split())) for _ in range(5)]
-# num = []
-# for _ in range(5):
-#     num.extend(list(map(int, input().split())))
-#
-# bingo = 0
-# def find(y, x):
-#     global bingo
-#     if MAP[y].count(0) == 4: # 가로
-#         bingo += 1
-#
-#     cnt_v = 0
-#     for k in range(5): # 세로
-#         if MAP[k][x] == 0:
-#             cnt_v += 1
-#     if cnt_v == 4:
-#         bingo += 1
-#
-#     cnt_c = 0
-#     for k in range(-2, 3):  # 대각
-#         if 0 <= y+k < 5 and 0 <= x+k < 5 and MAP[y+k][x+k] == 0:
-#             cnt_c += 1
-#     if cnt_c == 4:
-#         bingo += 1
-#
-#     if bingo >= 3:   # 3빙고 되면
-#         return True
-#
-# def game():
-#     for n in num:
-#         for y in range(5):
-#             for x in range(5):
-#                 if MAP[y][x] == n:
-#                     if find(y,x):
-#                         return n
-#                     MAP[y][x] = 0
-# print(game())
+
 MAP = [list(map(int, input().split())) for _ in range(5)]
 num = []
 for _ in range(5):
