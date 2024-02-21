@@ -2,16 +2,15 @@
 import sys
 input = sys.stdin.readline
 A, K = map(int, input().split())
-min_cnt = float('inf')
-def f(a,cnt = 0):
-    global min_cnt
-    if a > K or cnt > min_cnt:
-        return
-    if a == K:
-        min_cnt = min(min_cnt, cnt)
-        return
-    f(a+1, cnt+1)
-    f(a*2, cnt+1)
+cnt = 0
 
-f(A)
-print(min_cnt)
+while True:
+    if A == K:
+        break
+    if K % 2 == 0 and K // 2 >= A:
+        K //= 2
+    else:
+        K -= 1
+    cnt += 1
+
+print(cnt)
