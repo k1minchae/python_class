@@ -1,2 +1,0 @@
-input = sys.stdin.readline
-

@@ -13,6 +13,3 @@ for _ in range(N):
             print(0)
     else:
         heapq.heappush(arr, x)
-
-
-
