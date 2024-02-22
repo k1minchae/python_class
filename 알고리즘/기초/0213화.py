@@ -1,31 +1,31 @@
 # 계산기
 # fx = '(6+5*(2-8)/2)'
 # top = -1
-# stack = [0] * 100
+# 스택 = [0] * 100
 #
 # icp = {'(': 3, '*': 2, '/':2, '+':1, '-':1} # 스택에 들어오기 전
 # isp = {'(': 0, '*': 2, '/':2, '+':1, '-':1} # 스택에 들어온 후
 # postfix = '' # 우리가 구하려는 후위식
 # for tk in fx:
 #     # 여는 괄호 push, top 원소보다 우선순위가 높으면 push
-#     if tk == '(' or isp[stack[top]] < icp[tk]:
+#     if tk == '(' or isp[스택[top]] < icp[tk]:
 #         top += 1 # push
-#         stack[top] = tk # append 로 해도 됨
+#         스택[top] = tk # append 로 해도 됨
 #
 #     # 연산자이고 top원소보다 우선순위가 높지 않으면
-#     elif tk in '*/+-' and isp[stack[top]] >= icp[tk]:
+#     elif tk in '*/+-' and isp[스택[top]] >= icp[tk]:
 #         # top원소의 우선순위가 더 낮을 때까지 pop
-#         while isp[stack[top]] >= icp[tk]:
+#         while isp[스택[top]] >= icp[tk]:
 #             top -= 1 # pop
-#             postfix += stack[top+1]
+#             postfix += 스택[top+1]
 #         top += 1 # push
-#         stack[top] = tk
+#         스택[top] = tk
 #     elif tk == ')':
-#         while stack[top] != '(':
+#         while 스택[top] != '(':
 #             top -= 1 # pop
-#             postfix += stack[top+1]
+#             postfix += 스택[top+1]
 #         top -= 1 # 여는 괄호 pop해서 버림
-#         stack[top+1]
+#         스택[top+1]
 #     else: # 피연산자인경우
 #         postfix += tk
 # print(postfix)
@@ -71,35 +71,35 @@
 # 후위표기법
 #
 # S = input()
-# stack = []
+# 스택 = []
 #
 # for s in S:
 #     if '0' <= s <= '9':
-#         stack.append(int(s))
+#         스택.append(int(s))
 #     else:
-#         a = stack.pop()
-#         b = stack.pop()
+#         a = 스택.pop()
+#         b = 스택.pop()
 #         if s == '+':
-#             stack.append(b+a)
+#             스택.append(b+a)
 #         else:
-#             stack.append(b-a)
-# print(stack[-1])
+#             스택.append(b-a)
+# print(스택[-1])
 
 
 # 그래프 경로 - DFS
 
 # def dfs(start, end):
-#     stack = []
+#     스택 = []
 #     visited = [False] * (V+1)
-#     stack.append(start)
+#     스택.append(start)
 #
-#     while stack: # 스택이 비어있으면 반복문 종료
-#         now = stack.pop()
+#     while 스택: # 스택이 비어있으면 반복문 종료
+#         now = 스택.pop()
 #         visited[now] = True  # 현재 노드 방문
 #         for next in range(1, V+1):
 #             # 방문하지 않았고, 연결되어 있다면
 #             if node[now][next] and not visited[next]:
-#                 stack.append(next)
+#                 스택.append(next)
 #
 #     if visited[end]:  # 끝점에 방문했다면
 #         return 1

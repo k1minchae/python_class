@@ -12,9 +12,9 @@
 1 2 1 3 2 4 2 5 4 6 5 6 6 7 3 7
 
 def dfs(i, V): # 시작 번호 : i , 마지막 : V
-    # visited, stack 생성 및 초기화
+    # visited, 스택 생성 및 초기화
     visited = [0] * (V+1)
-    stack = []
+    스택 = []
     visited[i] = 1 # 시작점 방문
     print(i)  # 시작점 출력
 
@@ -22,15 +22,15 @@ def dfs(i, V): # 시작 번호 : i , 마지막 : V
     while True: # 탐색
         for w in adjl[i]: # 인접리스트를 탐색했을 때
             if visited[w] == 0: # 방문 안한 정점이라면
-                stack.append(i) # push : i를 거쳐서
+                스택.append(i) # push : i를 거쳐서
                 i = w      # w에 방문
                 visited[i] = 1 # 방문해서 할 일
                 print(i)
                 break   # for w 를 중단시키는 break
         else: # for else : 반복문이 완료되고도 break가 안됐을때
             # 스택이 비어있지 않으면 ( 지나온 정점이 남아있으면 )
-            if stack:
-                i = stack.pop()
+            if 스택:
+                i = 스택.pop()
             else: # 스택이 비어있으면 (출발점까지 거슬러 올라갔다면)
                 break # while 탐색 마무리
 
@@ -67,7 +67,7 @@ def dfs(i): # 시작 번호 : i , 마지막 : V
 V, E = map(int, input().split()) # 마지막 정점 번호 V
 arr = list(map(int, input().split()))
 visited = [0] * (V + 1)
-stack = []
+스택 = []
 
 # 인접리스트
 adjl = [[] for _ in range(V+1)] # arr[i] 행에 i에 인접인 노드번호 (0~7)
