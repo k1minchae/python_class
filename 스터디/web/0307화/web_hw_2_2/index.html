@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .card {
+        position: relative;
+        padding: 25px;
+        border: solid black 1px;
+        width: 400px;
+        height: 600px;
+      }
+      .image-box {
+        background-color: red;
+        width: 350px;
+        height: 360px;
+        position: relative;
+      }
+      .name-background {
+        z-index: 3;
+        bottom: 0;
+        height: 50px;
+        width: 100%;
+        position: absolute;
+        background-color: hsla(27, 100%, 70%, 0.692);
+      }
+      #name-font {
+        z-index: 5;
+        position: relative;
+        color: black;
+        margin-top: auto;
+        margin-bottom: auto;
+        text-align: center;
+        font-weight: bold;
+        font-size: 36px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="card">
+        <div class="image-box">
+          <div class="name-background">
+            <p id="name-font">Name</p>
+          </div>
+          <img src="profile.jpg" alt="Profile Image" />
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci unde
+          officiis ad nostrum. Laboriosam mollitia similique provident fuga
+          tenetur saepe sit, amet eaque neque eius quaerat expedita ea illum
+          veniam.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
