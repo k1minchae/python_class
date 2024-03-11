@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0px 1px 5px black;
+}
+
+body {
+  font-size: 16px;
+  background-color: white;
+}
+
+/* .card 클래스의 자식인 header 요소 */
+.card > header {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.card > p {
+  font-size: 1.0rem;
+  line-height: 1.6em;
+}
+
+.card > img {
+  max-width: 100%;
+}
+
+#wrapper{
+  /* 그리드 시스템 반응형 웹의 3번째 방법 */
+  display : grid;
+  grid-template-columns:;
+  grid-gap:;
+}
