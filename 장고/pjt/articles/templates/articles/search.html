@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>검색 화면입니다.</h2>
+<form action="https://search.naver.com/search.naver?" method = "GET">
+  <label for="message">검색어</label>
+  <input type="text" id="message" name ="query">
+  <input type="submit" value = "검색">
+</form>
+{% endblock content %}

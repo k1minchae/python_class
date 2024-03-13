@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>먹고 싶은 음식을 쓰세요</h1>
+{% comment %} articles라는 namespace 에 속한 catch {% endcomment %}
+<form action="{%url 'articles:catch'%}" method="GET">
+  <label for="message">메뉴 추천 : </label>
+  <input type="text" id="message" name ="query">
+  <input type="submit">
+</form>
+{% endblock content %}
