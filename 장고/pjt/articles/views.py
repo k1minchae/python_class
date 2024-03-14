@@ -3,7 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 def index(request):
     context = {
-        'name' : 'Jane'
+        'name' : '민채',
+        'num' : 1,
     }
     # render 함수의 3번째 항목에는 매개변수(딕셔너리)가 들어감
     return render(request, 'articles/index.html', context)
