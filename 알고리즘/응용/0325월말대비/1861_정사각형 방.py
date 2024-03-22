@@ -1,4 +1,6 @@
 # 정사각형 방
+import sys
+sys.setrecursionlimit(100000)
 def dfs(y, x, start, cnt=1):
     global max_cnt, room
     if cnt > max_cnt:
