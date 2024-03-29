@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>나만의 SNS 서비스</h1>
+  <a href="{% url "articles:create" %}">[CREATE]</a>
+  {% for article in articles %}
+  {% if article.image %}
+  <img src="{{article.image.url}}" alt="img">
+  {% endif %}
+  <p><a href="{% url "articles:detail" article.pk%}">{{article.title}}</a></p>
+  {% endfor %}
+</body>
+</html>
