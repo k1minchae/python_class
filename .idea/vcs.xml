@@ -2,6 +2,12 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/장고/DAY_8/django_ws_8_2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/장고/DAY_8/django_ws_8_2/django_ws_8_3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/장고/DAY_8/django_ws_8_3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/장고/DAY_8/django_ws_8_b" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/장고/DAY_8/django_ws_8_c" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/장고/Day_9/django_hw_9_2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/장고/장고7일차/django_ws_7_b" vcs="Git" />
   </component>
 </project>
