@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>레스토랑 전체 목록</h1>
+  <a href="{% url "restaurants:create" %}">[신규 레스토랑 등록]</a>
+  <ul>
+    {% for restaurant in restaurants %}
+    <a href="{% url "restaurants:detail" restaurant.pk %}">
+    <li>이름 : {{restaurant.name}}</li>
+    {% for cat in category %}
+    {% if cat.pk == restaurant.catrgory_id %}
+      {% if cat.image %}
+       <img style = "height: 300px ; width :300px;"" src="{{cat.image.url}}">
+      {% else %}
+      <p>이미지가 없습니다.</p>
+        <li>종류 : {{cat.name}}</li>
+      {% endif %}
+    <li>보유 중인 메뉴 수 : {{restaurant.menu_set.all|length}}</li>
+    {% endif %}
+    {% endfor %}
+    </a>
+    <hr>
+    {% endfor %}
+     
+  </ul>
+{% endblock content %}

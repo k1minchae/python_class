@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <h1>신규 레스토랑 등록</h1>
+  <form action="{% url "restaurants:create" %}" method = "POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input class = "form-control" type="submit" value = "등록">
+  </form>
+  <a href="{% url "restaurants:index" %}">[돌아가기]</a>
+{% endblock content %}

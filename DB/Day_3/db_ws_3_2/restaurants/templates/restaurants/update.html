@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <h1>메뉴 정보 수정 페이지</h1>
+  <form method = "POST">
+    {% csrf_token %}
+    {% bootstrap_form menu_update_form %}
+    <input type="submit" value = "정보수정">
+  </form>
+  <a href="{% url "restaurants:index" %}">[돌아가기]</a>
+{% endblock content %}

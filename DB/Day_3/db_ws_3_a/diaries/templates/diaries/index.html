@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static "diaries/style.css" %}">
+  <style>
+    .comment_container {
+      border: 1px solid black;
+      margin-left : 10px;
+      height : 600px;
+      width : 600px;
+      padding-left: auto;
+      padding-right: auto;
+    }
+  </style>
+{% endblock style %}
+
+{% block content %}
+  <h1>일기장</h1>
+  <a href="{% url "diaries:create" %}">[일기 쓰기]</a>
+
+
+  {% for diary in diaries %}
+  <div class="diaries-main">
+    <div>
+        <p>작성일 : {{ diary.created_at }}</p>
+        {% if diary.picture %}
+          <img src="{{ diary.picture.url }}" alt="{{ diary.picture }}">
+        {% else %}
+          <img src="{% static "diaries/default.png" %}" alt="{{ diary.picture }}">
+        {% endif %}
+        <p>{{ diary.content }}</p>
+    </div>
+    <div class = "diaries-comment">
+      <ul class= "diaries">
+
+      {% for comment in diary.comment_set.all %}
+      <li>
+      <span>{{comment.content}}</span>
+      <form action="{% url "diaries:comments_delete" diary.pk comment.pk %}" method = "POST">
+        {% csrf_token %}
+        <input type="submit" value = "댓글 삭제">
+      </form>
+    </li>
+      {% empty %}
+      <li>댓글을 입력하세요.</li>
+
+      {% endfor %}
+      <form action="{% url "diaries:comments_create" diary.pk %}" method = "POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value = "댓글작성">
+      </form>
+    </ul>
+    </div>
+  </div>
+ 
+    {% empty %}
+      <li>아직 작성한 일기가 없습니다.</li>
+
+    {% endfor %}
+
+
+{% endblock content %}
