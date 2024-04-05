@@ -25,14 +25,16 @@ def bfs(a):
     score = max(visited)
     result[score] = result.get(score, []) + [a]
     return
-for i in range(1, N):
+for i in range(1, N+1):
     bfs(i)
 
-max_k = 0
+min_k = 100000
 val = []
 for k, v in result.items():
-    if max_k < k:
-        max_k = k
+    if min_k > k:
+        min_k = k
         val = v
-print(result)
-print(max_k, v)
+
+print(min_k, len(val))
+print(*val)
+
