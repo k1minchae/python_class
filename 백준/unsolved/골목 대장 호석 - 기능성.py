@@ -1,32 +1,29 @@
 # 골목 대장 호석 - 기능성
-from heapq import heappop, heappush
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(1000000)
 
 N, M, S, E, C = map(int, input().split())
 adj = [[]for _ in range(N+1)]
 for _ in range(M):
     a, b, c = map(int, input().split())
-    adj[a].append((-c, b))
-    adj[b].append((-c, a))
-
-def dijkstra():
-    q = [(0, S)]
-    result = [float('-inf')] * (N+1)
-    result[S] = 0
-    max_h = 0
-    while q:
-        c, x = heappop(q)
-        if x == E:
-            return max_h
-        if c < result[x]:
-            continue
-        for cost, nx in adj[x]:
-            nc = c + cost
-            if nc < -C or result[nx] > nc:
-                continue
-            max_h = max(max_h, -cost)
-            result[nx] = nc
-            heappush(q, (nc, nx))
-    return -1
-print(dijkstra())
+    adj[a].append((c, b))
+    adj[b].append((c, a))
+min_h = float('inf')
+visited = [0] * (N+1)
+def dfs(n=S, h=0, c=0): # 노드번호, 수치심, 남은돈
+    global min_h
+    visited[n] = 1
+    if n == E:
+        min_h = min(h, min_h)
+        return
+    for nc, nn in adj[n]:
+        if not visited[nn] and nc+c <= C:
+            visited[nn] = 1
+            dfs(nn, max(h, nc), c+nc)
+            visited[nn] = 0
+dfs()
+if min_h == float('inf'):
+    print(-1)
+else:
+    print(min_h)
