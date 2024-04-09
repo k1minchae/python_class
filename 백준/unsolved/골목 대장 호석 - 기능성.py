@@ -17,8 +17,6 @@ def dijkstra():
     max_h = 0
     while q:
         c, x = heappop(q)
-        if x == E:
-            return max_h
         if c < result[x]:
             continue
         for cost, nx in adj[x]:
@@ -28,5 +26,7 @@ def dijkstra():
             max_h = max(max_h, -cost)
             result[nx] = nc
             heappush(q, (nc, nx))
-    return -1
+    if result[E] == float('-inf'):
+        return -1
+    return -result[E]
 print(dijkstra())

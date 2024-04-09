@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{{user.username}}님의 프로필 페이지 입니다!</h1>
+  {% if user.email %}
+    <p>{{user.email}}</p>
+  {% else %}
+    <p>아직 이메일을 작성하지 않았습니다.</p>
+  {% endif %}
+  {% if request.user == user %}
+  <hr>
+  <a href="{% url "accounts:update" %}">[USER UPDATE]</a>
+  <form action="{% url "accounts:delete" %}" method="POST">
+    <input type="submit" value="탈퇴">
+  </form>
+  {% endif %}
+  <hr>
+  {% if request.user != user %}
+  <form action="{% url "accounts:subscribe" user.pk %}" method="POST">
+    {% csrf_token %}
+    {% if request.user in user.subscriber.all %}
+    <input type="submit" value = "구독해제">
+    {% else %}
+    <input type="submit" value = "구독">
+    {% endif %}
+  </form>
+  <hr>
+{% endif %}
+  <h3>{{user.username}}님이 선택한 사진들</h3>
+  <ul>
+    {% for diary in diaries %}
+    {% if diary.picture %}
+      <li><img src="{{diary.picture.url}}" alt="">
+        <p>{{diary.content}}</p>
+      </li>
+    {% else %}
+    <li>{{diary.content}}</li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+  <hr>
+  {% if request.user != user %}
+  <h3>{{user.username}}님이 구독중인 유저 목록</h3>
+  <ul>
+    {% for sub in subscriptions %}
+      <li>이름 : <a href="{% url "accounts:profile" sub.username %}">{{sub.username}}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <ul>
+  <h3>내가 구독중인 유저들의 할 일 목록</h3>
+  {% for sub in subscriptions %}
+  <li>이름 : {{sub.username}}
+  {% if todos %}
+    {% for todo in todos %}
+    <ul><li>{{todo.content}}</li></ul>
+    {% endfor %}
+  {% else %}
+    <p>아직 작성한 할 일이 없습니다.</p>
+  {% endif %}
+  </li>
+  {% endfor %}
+  </ul>
+  {% endif %}
+
+{% endblock content %}
