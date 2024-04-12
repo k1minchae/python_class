@@ -5,6 +5,7 @@ class CreateMovie(forms.ModelForm):
     class Meta:
         model = Movie
         fields = '__all__'
+        exclude = ('user',)
 
 class CreateComment(forms.ModelForm):
     class Meta:

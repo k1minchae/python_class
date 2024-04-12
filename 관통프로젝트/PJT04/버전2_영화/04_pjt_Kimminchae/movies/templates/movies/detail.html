@@ -8,23 +8,32 @@
   {% endif %}
   <h2>{{movie.title}}</h2>
   <h5>{{movie.content}}</h5>
+  <h6>장르 : {{movie.genre}}</h6>
+  <h6>평점 : {{movie.score}}</h6>
 </section>
 <hr>
 <a href="{% url "movies:update" movie.pk %}" class="btn btn-secondary">UPDATE</a>
 <a href="{% url "movies:delete" movie.pk %}" class="btn btn-danger">DELETE</a>
 <hr>
-  <form action="{% url "movies:create_comment" movie.pk %}" method = "POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value = "댓글 작성">
-  </form>
-<hr>
-  <h4>댓글 목록</h4>
-  <ul>
+<h4>댓글 목록</h4>
+  <ul class="list-group" style = "margin-bottom: 20px;">
     {% for comment in comments %}
-      <li>{{comment.user}} : {{comment.content}}</li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>{{comment.user}} : {{comment.content}}</span>
+      {% if request.user == comment.user %}
+      <form action="{% url "movies:delete_comment" movie.pk comment.pk %}" method="post" style="display: inline;">
+          {% csrf_token %}
+          <input class="btn btn-danger" type="submit" value="DELETE">
+      </form>
+      {% endif %}
+  </li>
     {% endfor %}
   </ul>
+  <form action="{% url "movies:create_comment" movie.pk %}" method = "POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value = "댓글 작성">
+  </form>
 <hr>
 <a href="{% url "movies:index" %}" class="btn btn-primary">BACK</a>
 </article>

@@ -27,7 +27,9 @@ def create(request):
         if request.method == "POST":
             form = CreateMovie(request.POST, request.FILES)
             if form.is_valid():
-                movie = form.save()
+                movie = form.save(commit=False)
+                movie = request.user
+                movie = movie.save()
                 return redirect('movies:detail', movie.pk)
         form = CreateMovie()
         context = {
@@ -64,8 +66,17 @@ def create_comment(request, movie_pk):
     return render(request, 'accounts/ban.html')
     
 def delete(request, movie_pk):
-    if request.user.is_authenticated:
-        movie = Movie.objects.get(pk=movie_pk)
+    movie = Movie.objects.get(pk=movie_pk)
+    if request.user.is_authenticated and movie.user == request.user:
         movie.delete()
         return redirect('movies:index')
     return render(request, 'accounts/ban.html')
+
+def delete_comment(request, movie_pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    if request.user.is_authenticated and comment.user == request.user:
+        comment = Comment.objects.get(pk=comment_pk)
+        comment.delete()
+        return redirect('movies:detail', movie_pk)
+    else:
+        return render(request, 'accounts/ban.html')
