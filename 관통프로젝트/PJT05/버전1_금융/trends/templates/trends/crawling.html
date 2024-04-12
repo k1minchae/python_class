@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>크롤링 기초 - 전체 기간 검색 결과</h2>
+{% for result in results %}
+  <p>검색 결과 : {{result.name}} - {{result.result}}개 / 검색 일자 : {{result.created_at}}</p>
+  <hr>
+{% endfor %}
+{% endblock content %}
