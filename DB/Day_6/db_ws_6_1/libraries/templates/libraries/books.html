@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>전체 소설 목록</h1>
-
+<ul>
+  {% for book in books %}
+  <li>제목 : {{book.title}} // 작가 : <a href="{% url "libraries:author_books" book.author.id %}">{{book.author}}</a> </li>
+  {% endfor %}
+</ul>
+<a href="{% url "libraries:create_book" %}">[책 쓰러 가기]</a>
 {% endblock content %}
