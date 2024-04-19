@@ -68,3 +68,28 @@ def password_change(request, user_pk):
         'form':form
     }
     return render(request, 'accounts/change_password.html', context)
+
+def profile(request, user_pk):
+    user = User.objects.get(pk=user_pk)
+    followers = user.followers.all()
+    followings = user.followings.all()
+    movies = user.movie_set.all()
+    like_movies = user.like_users.all()
+    context = {
+        'movies':movies,
+        'like_movies':like_movies,
+        'user':user,
+        'followers':followers,
+        'followings': followings,
+    }
+
+    return render(request, 'accounts/profile.html', context)
+
+def follow(request, user_pk):
+    you = User.objects.get(pk=user_pk)
+    if request.user != you:
+        if request.user in you.followers.all():
+            you.followers.remove(request.user)
+        else:
+            you.followers.add(request.user)
+        return redirect('accounts:profile', you.pk)

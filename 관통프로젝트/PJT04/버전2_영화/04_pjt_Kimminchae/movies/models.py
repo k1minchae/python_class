@@ -7,6 +7,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
     image = models.ImageField(blank=True)
+    like_users = models.ManyToManyField(User, symmetrical=False, related_name='like_users', null=True)
 
 
     COMEDY = 'Comedy'

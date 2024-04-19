@@ -1,47 +1,38 @@
-# 트리의 지름
+# 민준이와 마산 그리고 건우
 import sys
 input = sys.stdin.readline
-def find(x):
-    if parents[x] == x:
-        return x
-    parents[x] = find(parents[x])
-    return parents[x]
+from heapq import heappop, heappush
+N, M, tar = map(int, input().split())
+tar -= 1
+adj = [[] for _ in range(N)]
+for _ in range(M):
+    a, b, c = map(int, input().split())
+    adj[a-1].append((c, b-1))
+    adj[b-1].append((c, a-1))
 
-def union(x, y):
-    x = find(x)
-    y = find(y)
-    if x == y:
-        return
-    parents[y] = x
-
-def dfs(v, dis=0):
-    global max_d
-    max_d = max(dis, max_d)
-    for w in range(0, len(adj[v]), 2):
-        next = adj[v][w]
-        cost = adj[v][w+1]
-        if visited[next]:
+def dijkstra(start, end):
+    q = [(0, start)]
+    visited = [float('inf')] * N
+    visited[start] = 0
+    while q:
+        c, x = heappop(q)
+        if visited[x] < c:
             continue
-        visited[next] = 1
-        dfs(next, dis+cost)
-        visited[next] = 0
+        for nc, nx in adj[x]:
+            next_cost = nc + c
+            if visited[nx] <= next_cost:
+                continue
+            visited[nx] = next_cost
+            heappush(q, (next_cost, nx))
+    return visited[end]
 
-N = int(input())
-parents = [i for i in range(N+1)]
-adj = [[] for _ in range(N+1)]
-for _ in range(N):
-    v, *lst, dump = map(int, input().split())
-    for i in range(0, len(lst), 2):
-        union(v, lst[i])
-        adj[v] += lst
+# 도착점까지의 최단경로
+direct = dijkstra(0, N-1)
 
-for i in range(1, N+1):
-    find(i)
-max_d = 0
-for i in set(parents):
-    if not i:
-        continue
-    visited = [0] * (N+1)
-    visited[i] = 1
-    dfs(i)
-print(max_d)
+# 민준이 들려서 도착점가는 거리
+to_minjun = dijkstra(0, tar) + dijkstra(tar, N-1)
+
+if direct == to_minjun: # 민준이 들리는거와 최단경로가 같다면
+    print('SAVE HIM')
+else:
+    print('GOOD BYE')
