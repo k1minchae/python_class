@@ -1,27 +1,20 @@
-# 과제
+# 수 나누기 게임
 import sys
 input = sys.stdin.readline
-from heapq import heappop, heappush
 N = int(input())
-arr = []
-for _ in range(N):
-    d, w = map(int, input().split())
-    arr.append((d, w))
-dp = [0] * 1001
-arr.sort()
-q = [arr[0][1]]
-d = 2
-for i in range(1, N):
-    day = arr[i][0]
-    score = arr[i][1]
-    if day < d:
-        q_score = heappop(q)
-        if q_score > score:
-            continue
-        else:
-            heappush(q, score)
-    else:
-        heappush(q, score)
-        d += 1
-print(sum(q))
+arr = list(map(int, input().split()))
+max_num = max(arr)
+idx = [i for i in range(0, N)]
+score = [0] * N
 
+temp = [[] for _ in range(max_num+1)]
+for i in range(N):
+    for j in range(arr[i], max_num+1, arr[i]):
+        temp[j].append(i)
+
+for i in range(N):
+    for idx in temp[arr[i]]:
+        if idx != i:
+            score[idx] += 1
+            score[i] -= 1
+print(*score)

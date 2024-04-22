@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .font-crimson {
+      color: crimson;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="heading">Hover me!</h1>
+  <h2 class="sub-heading">Double Click me!</h2>
+  <p class="contents">Lorem ipsum dolor sit amet consectetur</p>
+
+  <script>
+    const randomTexts = [
+      'Lorem ipsum dolor sit amet consectetu',
+      'adipisicing elit. Repellendus delectus quam',
+      'similique quo ipsam maxime totam alias',
+      'quibusdam repudiandae voluptas dicta',
+      'voluptas voluptatibus exercitationem officiis'
+    ]
+
+    // 아래에 코드 작성
+    const head = document.querySelector('.heading')
+    const headMessage = head.innerText
+    head.addEventListener('mouseover', function (event) {
+      head.innerText = randomTexts[Math.floor(Math.random()*5)]
+    })
+    head.addEventListener('mouseout', function (event) {
+      head.innerText = headMessage
+    })
+
+    const subhead = document.querySelector('.sub-heading')
+    subhead.addEventListener('dblclick', function (event) {
+      subhead.classList.toggle('font-crimson')
+    })
+
+    const pTag = document.querySelector('p')
+    pTag.addEventListener('mousewheel', function (event) {
+      pTag.innerText = randomTexts[Math.floor(Math.random()*5)]
+    })
+
+  </script>
+</body>
+
+</html>
