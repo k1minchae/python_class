@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dog API</h1>
+  <img draggable="false" src="noResult.png" alt="dog">
+  <h2>아직 선택된 사진이 없습니다!</h2>
+  <br>
+  <button>Get dog</button>
+<!-- body 옆에 속성으로 onload = "함수"  하면 렌더링 후 바로 실행-->
+
+</body>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const imgTag = document.querySelector('img')
+    const h2Tag = document.querySelector('h2')
+    const btn = document.querySelector('button')
+    const API_URI = 'https://dog.ceo/api/breeds/image/random'
+
+    const showDog = function (event) {
+      axios.get(API_URI)
+      .then((response) => {
+        imgTag.src = response.data.message
+        h2Tag.remove()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    } 
+    btn.addEventListener('click', showDog)
+  </script>
+
+</html>

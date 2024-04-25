@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form>
+    <input type="text" name="name">
+    <input type="submit" value="내 나이는?">
+  </form>
+
+  <section>
+    <!-- 여기에 내용 추가 -->
+  </section>
+  <!-- axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const nameInput = document.querySelector('[name="name"]');
+    const form = document.querySelector('form');
+    const section = document.querySelector('section');
+  
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = nameInput.value;
+  
+      axios({
+        method: 'get',
+        url: 'https://api.agify.io',
+        params: {
+          name: name
+        }
+      }).then((response) => {
+        console.log(name, "확인");
+        console.log(response);
+  
+        // 이름 정보 표시
+        const nameP = document.createElement('p');
+        nameP.textContent = `제 이름은 : ${name} 입니다.`;
+        section.appendChild(nameP);
+  
+        // 나이 정보 표시
+        if (response.data && response.data.age) {
+          const ageData = document.createElement('p');
+          ageData.textContent = "제 나이는 " + response.data.age + "입니다.";
+          section.appendChild(ageData);
+        } else {
+          const noAgeData = document.createElement('p');
+          noAgeData.textContent = "나이 정보를 찾을 수 없습니다.";
+          section.appendChild(noAgeData);
+        }
+        
+        // input tag 초기화
+        nameInput.value = '';
+      }).catch((error) => {
+        console.error('API 요청에 실패했습니다:', error);
+        const errorP = document.createElement('p');
+        errorP.textContent = "오류가 발생했습니다. 다시 시도해주세요.";
+        section.appendChild(errorP);
+      });
+    });
+  </script>
+  
+</body>
+</html>
