@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .red {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <input type="checkbox" v-model="isRed">
+    <p :class="{ red: isRed }">{{content}}</p>
+    <!-- 단방향 바인딩 : v-bind -->
+
+    <input type="text" v-bind:value="content">
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    // 양방향 바인딩 : v-model
+    const {createApp, ref} = Vue
+
+    createApp({
+      setup() {
+        const isRed = ref(true)
+        const content = ref('test')
+        const content2 = 'test'
+        return {
+          content,
+          isRed
+        }
+      }
+    })
+    .mount('#app')
+  </script>
+</body>
+</html>

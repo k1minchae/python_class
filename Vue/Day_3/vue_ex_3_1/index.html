@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .is-completed {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Todo Application</h1>
+    <p>완료된 할 일 : {{completedCount}}</p>
+    <select v-model="status">
+      <option value="all">전체 할일</option>
+      <option value="completed">완료된 할일</option>
+      <option value="incompleted">미완료된 할일</option>
+    </select>
+    <form @submit.prevent="addTodo">
+      <input type="text" :value="inputTodo" @input="(event) => { inputTodo = event.currentTarget.value }">
+      <input type="submit" value="Add">
+      
+    </form>
+
+    <ul v-for="todo in filteredTodos" :key="todo.id">
+      <li>
+        <input type="checkbox" v-model="todo.isCompleted"> 
+        <span :class="{'is-completed': todo.isCompleted}">{{todo.text}}</span>
+        <input type="submit" value="삭제" @click="deleteTodo(todo.id)">
+      </li>
+    </ul>
+  </div>
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref, watch, computed } = Vue
+  
+    const app = createApp({
+      setup() {
+        const todos = ref([
+          {id:1, text:'생필품 구입', isCompleted:false},
+          {id:2, text:'빨래', isCompleted:false},
+          {id:3, text:'방 청소', isCompleted:false}
+        ])
+        const inputTodo = ref('')
+        const addTodo = function () {
+          if (inputTodo.value.trim() !== '') {
+            todos.value.push({
+              id:Date.now(),
+              text: inputTodo.value,
+              isCompleted:false
+            })
+
+        } else {
+          alert('공백이나 빈칸은 못들어감')
+        }
+        inputTodo.value = ''
+        }
+        const deleteTodo = function (todoId) {
+          const index = todos.value.findIndex(todo => todo.id === todoId)
+          if (index !== -1) {
+            todos.value.splice(index,1)
+          }
+        }
+        // const completedCount = ref(0)
+        // watch(todos ,() => {
+        //   completedCount.value = todos.value.filter(todo => todo.isCompleted === true).length
+        // },{deep:true})
+
+          const completedCount = computed(() => {
+            return todos.value.filter(todo => todo.isCompleted).length
+          })
+
+        const status = ref('incompleted')
+        // computed 
+        // 1. 계산된 결과 return
+        // 2. 변수 값이 변할때마다 자동으로 새로 계산 (+렌더링)
+        const filteredTodos = computed(() => {
+          if (status.value === 'all') {
+            return todos.value
+          } else if (status.value === 'completed') {
+            return todos.value.filter(todo => todo.isCompleted === true)
+          } else {return todos.value.filter(todo => todo.isCompleted === false)}
+        })
+
+        return {
+          todos,
+          addTodo,
+          inputTodo,
+          deleteTodo,
+          completedCount,
+          status,
+          filteredTodos
+        }
+      }
+    })
+    
+    app.mount('#app')
+  </script>
+  
+</body>
+
+</html>
